@@ -1,31 +1,26 @@
 package com.example.editablenotepad.models;
 
 
+import java.util.Date;
+
 public class Note {
-
-    public static final String TABLE_NAME = "notes";
-
-    public static final String COLUMN_ID = "id";
-    public static final String COLUMN_NOTE = "note";
-    public static final String COLUMN_TIMESTAMP = "timestamp";
 
     private int id;
     private String title;
     private String note;
-    private String timestamp;
+    private String date;
 
-    public Note() {
+    public Note(){
 
     }
 
-    public Note(int id, String title, String note, String timestamp) {
+    public Note(int id,String title,String note){
         this.id = id;
         this.title = title;
         this.note = note;
-        this.timestamp = timestamp;
     }
 
-    public Note(String title,String note) {
+    public Note(String title,String note){
         this.title = title;
         this.note = note;
     }
@@ -42,10 +37,6 @@ public class Note {
         return note;
     }
 
-    public String getTimestamp() {
-        return timestamp;
-    }
-
 
     public void setId(int id) {
         this.id = id;
@@ -59,7 +50,11 @@ public class Note {
         this.note = note;
     }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

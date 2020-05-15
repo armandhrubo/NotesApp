@@ -9,10 +9,11 @@ import android.util.Log;
 
 import com.example.editablenotepad.models.Note;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
-import static com.example.editablenotepad.models.Note.COLUMN_TIMESTAMP;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
@@ -26,11 +27,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_ID = "id";
     private static final String KEY_TITLE = "title";
     private static final String KEY_NOTE = "note";
-    private static final String KEY_TIMESTAMP = "timestamp";
-
+    private static final String KEY_DATE = "date";
 
     // Coloumn Combinations
-    private static final String[] COLS_ID_TITLE_NOTE = new String[] {KEY_ID,KEY_TITLE,KEY_NOTE};
+    private static final String[] COLS_ID_TITLE_NOTE = new String[] {KEY_ID,KEY_TITLE,KEY_NOTE,KEY_DATE};
 
 
     public DatabaseHandler(Context context) {
@@ -43,8 +43,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_NOTES_TABLE = "CREATE TABLE " + TABLE_NAME + " ( "
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT"+", "
                 + KEY_TITLE + " TEXT NOT NULL"+ ", "
-                + KEY_NOTE + " TEXT"
-                + KEY_TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP"
+                + KEY_NOTE + " TEXT"+ ", "
+                + KEY_DATE + " TEXT NOT NULL"
                 + ")";
 
         Log.d(TAG,CREATE_NOTES_TABLE);
@@ -75,7 +75,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_TITLE, note.getTitle());
         values.put(KEY_NOTE, note.getNote());
-
+        values.put(KEY_DATE, getCurrentDateTime());
 
         db.insert(TABLE_NAME,null,values);
         db.close();
@@ -90,8 +90,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         db.close();
 
-        Log.d(TAG,"Get Note Result "+ c.getString(0)+","+c.getString(1)+","+c.getString(2)+","+c.getString(3));
-        Note note = new Note(Integer.parseInt(c.getString(0)),c.getString(1),c.getString(2),c.getString(3));
+        Log.d(TAG,"Get Note Result "+ c.getString(0)+","+c.getString(1)+","+c.getString(2));
+        Note note = new Note(Integer.parseInt(c.getString(0)),c.getString(1),c.getString(2));
         return note;
     }
 
@@ -110,6 +110,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 note.setId(Integer.parseInt(cursor.getString(0)));
                 note.setTitle(cursor.getString(1));
                 note.setNote(cursor.getString(2));
+                note.setDate(cursor.getString(3));
                 noteList.add(note);
 
             }while (cursor.moveToNext());
@@ -121,4 +122,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
+    private String getCurrentDateTime() {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        return formatter.format(date);
+    }
 }

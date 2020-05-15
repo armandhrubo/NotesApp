@@ -11,10 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.editablenotepad.R;
 import com.example.editablenotepad.models.Note;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHolder> {
@@ -38,7 +35,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
     public void onBindViewHolder(NotesViewHolder holder, int position) {
         holder.tvTitle.setText(noteList.get(position).getTitle());
         holder.tvNote.setText(noteList.get(position).getNote());
-        holder.timestamp.setText(noteList.get(position).getTimestamp());
+        holder.tvDate.setText(noteList.get(position).getDate());
     }
 
     @Override
@@ -48,14 +45,13 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
 
     public class NotesViewHolder extends RecyclerView.ViewHolder{
 
-        TextView tvTitle,tvNote, timestamp;
+        TextView tvTitle,tvNote,tvDate;
         public NotesViewHolder(View itemView) {
             super(itemView);
 
             tvTitle = itemView.findViewById(R.id.tvNoteTitle);
             tvNote = itemView.findViewById(R.id.tvNoteText);
-            timestamp = itemView.findViewById(R.id.tvTimestamp);
-
+            tvDate = itemView.findViewById(R.id.tvNoteDate);
         }
     }
 
