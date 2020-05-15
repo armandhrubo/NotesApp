@@ -54,23 +54,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
 
             tvTitle = itemView.findViewById(R.id.tvNoteTitle);
             tvNote = itemView.findViewById(R.id.tvNoteText);
-            timestamp = itemView.findViewById(R.id.timestamp);
+            timestamp = itemView.findViewById(R.id.tvTimestamp);
 
         }
-    }
-
-    public String formatDate(String dateStr) {
-        try {
-            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date date = fmt.parse(dateStr);
-            SimpleDateFormat fmtOut = new SimpleDateFormat("MMM d");
-            return fmtOut.format(date);
-        }
-        catch (ParseException e) {
-
-        }
-
-        return "";
     }
 
 }

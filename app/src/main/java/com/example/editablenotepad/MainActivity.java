@@ -57,8 +57,9 @@ public class MainActivity extends AppCompatActivity {
             rvNotes.setAdapter(adapter);
         }
 
-
     }
+
+    
 
     @OnClick(R.id.fabAddNote)
     public void addNote(){
