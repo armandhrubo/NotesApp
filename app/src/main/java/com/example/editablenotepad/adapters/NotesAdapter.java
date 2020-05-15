@@ -11,7 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.editablenotepad.R;
 import com.example.editablenotepad.models.Note;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHolder> {
@@ -35,6 +38,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
     public void onBindViewHolder(NotesViewHolder holder, int position) {
         holder.tvTitle.setText(noteList.get(position).getTitle());
         holder.tvNote.setText(noteList.get(position).getNote());
+        holder.timestamp.setText(noteList.get(position).getTimestamp());
     }
 
     @Override
@@ -44,14 +48,29 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
 
     public class NotesViewHolder extends RecyclerView.ViewHolder{
 
-        TextView tvTitle,tvNote;
+        TextView tvTitle,tvNote, timestamp;
         public NotesViewHolder(View itemView) {
             super(itemView);
 
             tvTitle = itemView.findViewById(R.id.tvNoteTitle);
             tvNote = itemView.findViewById(R.id.tvNoteText);
+            timestamp = itemView.findViewById(R.id.timestamp);
 
         }
+    }
+
+    public String formatDate(String dateStr) {
+        try {
+            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = fmt.parse(dateStr);
+            SimpleDateFormat fmtOut = new SimpleDateFormat("MMM d");
+            return fmtOut.format(date);
+        }
+        catch (ParseException e) {
+
+        }
+
+        return "";
     }
 
 }

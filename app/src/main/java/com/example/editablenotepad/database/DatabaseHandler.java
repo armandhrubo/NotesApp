@@ -12,6 +12,8 @@ import com.example.editablenotepad.models.Note;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.editablenotepad.models.Note.COLUMN_TIMESTAMP;
+
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final String TAG = "DatabaseHandler";
@@ -24,6 +26,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_ID = "id";
     private static final String KEY_TITLE = "title";
     private static final String KEY_NOTE = "note";
+    private static final String KEY_TIMESTAMP = "timestamp";
+
 
     // Coloumn Combinations
     private static final String[] COLS_ID_TITLE_NOTE = new String[] {KEY_ID,KEY_TITLE,KEY_NOTE};
@@ -40,6 +44,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT"+", "
                 + KEY_TITLE + " TEXT NOT NULL"+ ", "
                 + KEY_NOTE + " TEXT"
+                + KEY_TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP"
                 + ")";
 
         Log.d(TAG,CREATE_NOTES_TABLE);
@@ -85,8 +90,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         db.close();
 
-        Log.d(TAG,"Get Note Result "+ c.getString(0)+","+c.getString(1)+","+c.getString(2));
-        Note note = new Note(Integer.parseInt(c.getString(0)),c.getString(1),c.getString(2));
+        Log.d(TAG,"Get Note Result "+ c.getString(0)+","+c.getString(1)+","+c.getString(2)+","+c.getString(3));
+        Note note = new Note(Integer.parseInt(c.getString(0)),c.getString(1),c.getString(2),c.getString(3));
         return note;
     }
 
@@ -115,9 +120,5 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return noteList;
 
     }
-
-
-
-
 
 }
