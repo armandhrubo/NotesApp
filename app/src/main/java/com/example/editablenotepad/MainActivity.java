@@ -48,20 +48,19 @@ public class MainActivity extends AppCompatActivity {
         rvNotes.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    private void loadNotes(){
+    private void loadNotes() {
         DatabaseHandler db = new DatabaseHandler(this);
 
         notesList = db.getAllNotes();
-        if(notesList.size() != 0){
+        if (notesList.size() != 0 ) {
             adapter = new NotesAdapter(this,notesList);
             rvNotes.setAdapter(adapter);
         }
 
-
     }
 
     @OnClick(R.id.fabAddNote)
-    public void addNote(){
+    public void addNote() {
         Intent i = new Intent(MainActivity.this,AddNoteActivity.class);
         startActivity(i);
     }

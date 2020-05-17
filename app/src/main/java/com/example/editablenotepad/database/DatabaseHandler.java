@@ -103,9 +103,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Cursor cursor = db.query(TABLE_NAME,COLS_ID_TITLE_NOTE,null,null,null,null,null);
 
 
-        if(cursor!= null && cursor.moveToFirst()){
+        if (cursor!= null && cursor.moveToFirst()) {
 
-            do{
+            do {
                 Note note = new Note();
                 note.setId(Integer.parseInt(cursor.getString(0)));
                 note.setTitle(cursor.getString(1));
@@ -113,10 +113,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 note.setDate(cursor.getString(3));
                 noteList.add(note);
 
-            }while (cursor.moveToNext());
-
+            }
+            while (cursor.moveToNext());
 
         }
+
         db.close();
         return noteList;
 

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.editablenotepad.R;
@@ -43,7 +44,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         return noteList.size();
     }
 
-    public class NotesViewHolder extends RecyclerView.ViewHolder{
+    public class NotesViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvTitle,tvNote,tvDate;
         public NotesViewHolder(View itemView) {

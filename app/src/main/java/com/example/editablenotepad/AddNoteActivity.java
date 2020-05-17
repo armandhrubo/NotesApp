@@ -60,7 +60,7 @@ public class AddNoteActivity extends AppCompatActivity {
     }
 
 
-    private void showToast(String msg){
+    private void showToast(String msg) {
         Toast.makeText(this,msg,Toast.LENGTH_SHORT);
     }
 
@@ -74,7 +74,7 @@ public class AddNoteActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-        if(id == R.id.action_save){
+        if (id == R.id.action_save) {
             saveNote();
         }
 

@@ -14,13 +14,13 @@ public class Note {
 
     }
 
-    public Note(int id,String title,String note){
+    public Note(int id,String title,String note) {
         this.id = id;
         this.title = title;
         this.note = note;
     }
 
-    public Note(String title,String note){
+    public Note(String title,String note) {
         this.title = title;
         this.note = note;
     }
