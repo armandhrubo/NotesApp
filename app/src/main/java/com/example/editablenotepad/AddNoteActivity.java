@@ -38,14 +38,15 @@ public class AddNoteActivity extends AppCompatActivity {
     }
 
 
-    private void saveNote(){
+    private void saveNote() {
 
         String title = etTitle.getText().toString();
         String note_text = etNote.getText().toString();
 
-        if(title.equals("") || note_text.equals("")){
+        if (title.equals("") || note_text.equals("")) {
             showToast("Please fill all the fields before saving");
-        }else{
+        }
+        else {
             DatabaseHandler db = new DatabaseHandler(this);
             Note note = new Note(title,note_text);
             db.addNote(note);

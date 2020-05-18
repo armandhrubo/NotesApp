@@ -10,7 +10,7 @@ public class Note {
     private String note;
     private String date;
 
-    public Note(){
+    public Note() {
 
     }
 
