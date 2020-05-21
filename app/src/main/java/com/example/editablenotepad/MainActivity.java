@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements OnEditListener {
         DatabaseHandler db = new DatabaseHandler(this);
 
         notesList = db.getAllNotes();
+
         if (notesList.size() != 0) {
             adapter = new NotesAdapter(this,notesList, this);
             rvNotes.setAdapter(adapter);
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements OnEditListener {
     }
 
     @OnClick(R.id.fabAddNote)
-    public void addNote(){
+    public void addNote() {
         Intent i = new Intent(MainActivity.this,AddNoteActivity.class);
         startActivity(i);
     }

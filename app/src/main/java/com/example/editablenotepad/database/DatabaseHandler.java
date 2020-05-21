@@ -110,7 +110,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public Note getNote(int id){
+    public Note getNote(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor c = db.query(TABLE_NAME,COLS_ID_TITLE_NOTE,KEY_ID +"=?",new String[]{String.valueOf(id)},null,null,null,null);

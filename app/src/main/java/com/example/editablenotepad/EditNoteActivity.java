@@ -40,10 +40,7 @@ public class EditNoteActivity extends AppCompatActivity {
         if (intent != null) {
             note = (Note) intent.getSerializableExtra("SELECTED_NOTE");
             System.out.println("Note: " + note.getNote());
-//            int index = intent.getIntExtra("SELECTED_INDEX", -1);
-//            if(index == -1) {
-//
-//            }
+
             etTitle.setText(note.getTitle());
             etNote.setText(note.getNote());
         }
@@ -53,10 +50,11 @@ public class EditNoteActivity extends AppCompatActivity {
 
         note.setTitle(etTitle.getText().toString());
         note.setNote(etNote.getText().toString());
-//        System.out.println("note_text: " + note_text);
-        if (note.getTitle().equals("") || note.getNote().equals("")){
+
+        if (note.getTitle().equals("") || note.getNote().equals("")) {
             showToast("Please fill all the fields before saving");
-        }else{
+        }
+        else {
             DatabaseHandler db = new DatabaseHandler(this);
             System.out.println("update method calling...");
             db.updateNote(note);
@@ -74,7 +72,7 @@ public class EditNoteActivity extends AppCompatActivity {
         updateNote();
     }
 
-    private void showToast(String msg){
+    private void showToast(String msg) {
         Toast.makeText(this,msg,Toast.LENGTH_SHORT);
     }
 }
