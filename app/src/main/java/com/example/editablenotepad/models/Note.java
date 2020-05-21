@@ -1,26 +1,27 @@
 package com.example.editablenotepad.models;
 
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Note {
+public class Note implements Serializable {
 
     private int id;
     private String title;
     private String note;
     private String date;
 
-    public Note() {
+    public Note(){
 
     }
 
-    public Note(int id,String title,String note) {
+    public Note(int id,String title,String note){
         this.id = id;
         this.title = title;
         this.note = note;
     }
 
-    public Note(String title,String note) {
+    public Note(String title,String note){
         this.title = title;
         this.note = note;
     }

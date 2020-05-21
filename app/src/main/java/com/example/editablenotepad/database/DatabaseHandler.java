@@ -81,11 +81,40 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void updateNote(Note noteToBeUpdated) {
+        System.out.println("In DB Update: " + noteToBeUpdated.getNote());
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_ID, noteToBeUpdated.getId());
+        values.put(KEY_TITLE, noteToBeUpdated.getTitle());
+        values.put(KEY_NOTE, noteToBeUpdated.getNote());
+        values.put(KEY_DATE, getCurrentDateTime());
+        String whereClause = KEY_ID +"=?";
+        String whereArgs[] = {String.valueOf(noteToBeUpdated.getId())};
+
+        System.out.printf("contentValues: " + values.toString());
+        db.update(TABLE_NAME, values, whereClause, whereArgs);
+
+        db.close();
+    }
+
+    public void deleteNote(Note noteToBeDeleted) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereClause = KEY_ID +"=?";
+        String whereArgs[] = {String.valueOf(noteToBeDeleted.getId())};
+
+//        System.out.printf("contentValues: " + values.toString());
+        db.delete(TABLE_NAME, whereClause, whereArgs);
+
+        db.close();
+    }
+
     public Note getNote(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor c = db.query(TABLE_NAME,COLS_ID_TITLE_NOTE,KEY_ID +"=?",new String[]{String.valueOf(id)},null,null,null,null);
-        if(c != null){
+        if (c != null) {
             c.moveToFirst();
         }
         db.close();
@@ -95,7 +124,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return note;
     }
 
-    public List<Note> getAllNotes(){
+    public List<Note> getAllNotes() {
         SQLiteDatabase db = this.getReadableDatabase();
 
         List<Note> noteList = new ArrayList<>();
@@ -113,11 +142,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 note.setDate(cursor.getString(3));
                 noteList.add(note);
 
-            }
-            while (cursor.moveToNext());
+            } while (cursor.moveToNext());
+
 
         }
-
         db.close();
         return noteList;
 

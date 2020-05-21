@@ -38,15 +38,14 @@ public class AddNoteActivity extends AppCompatActivity {
     }
 
 
-    private void saveNote() {
+    private void saveNote(){
 
         String title = etTitle.getText().toString();
         String note_text = etNote.getText().toString();
 
-        if (title.equals("") || note_text.equals("")) {
+        if(title.equals("") || note_text.equals("")){
             showToast("Please fill all the fields before saving");
-        }
-        else {
+        }else{
             DatabaseHandler db = new DatabaseHandler(this);
             Note note = new Note(title,note_text);
             db.addNote(note);
@@ -61,7 +60,7 @@ public class AddNoteActivity extends AppCompatActivity {
     }
 
 
-    private void showToast(String msg) {
+    private void showToast(String msg){
         Toast.makeText(this,msg,Toast.LENGTH_SHORT);
     }
 
@@ -75,7 +74,7 @@ public class AddNoteActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-        if (id == R.id.action_save) {
+        if(id == R.id.action_save){
             saveNote();
         }
 
