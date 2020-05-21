@@ -54,7 +54,7 @@ public class EditNoteActivity extends AppCompatActivity {
         note.setTitle(etTitle.getText().toString());
         note.setNote(etNote.getText().toString());
 //        System.out.println("note_text: " + note_text);
-        if(note.getTitle().equals("") || note.getNote().equals("")){
+        if (note.getTitle().equals("") || note.getNote().equals("")){
             showToast("Please fill all the fields before saving");
         }else{
             DatabaseHandler db = new DatabaseHandler(this);
